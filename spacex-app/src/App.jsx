@@ -9,6 +9,7 @@ import Missions from "./pages/Missions";
 import Crew from "./pages/Crew";
 import DetailPage from "./pages/DetailPage";
 
+
 export default function App() {
   return (
     <Router>

@@ -7,7 +7,39 @@
     <title>Vite + React</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" style="width: 100%"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      
+  const synth = window.speechSynthesis;
+
+  function speak(text) {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'es-ES';
+    synth.speak(utter);
+  }
+
+  function interactWithUser() {
+    const command = prompt("¿Qué deseas que haga el bot?");
+
+    if (!command) return;
+
+    const normalized = command.toLowerCase();
+
+    if (normalized.includes("hola")) {
+      speak("¡Hola! Soy tu asistente virtual de SpaceX.");
+    } else if (normalized.includes("leer")) {
+      speak(document.body.innerText);
+    } else if (normalized.includes("ir a") || normalized.includes("cambiar a")) {
+      const url = prompt("¿A qué página deseas ir? Escribe la URL:");
+      if (url) {
+        speak("Redirigiendo a " + url);
+        setTimeout(() => window.location.href = url, 2000);
+      }
+    } else {
+      speak("Lo siento, no entendí tu comando. Intenta decir: Hola, Leer, o Ir a otra página.");
+    }
+  }
+</script>
   </body>
 </html>
